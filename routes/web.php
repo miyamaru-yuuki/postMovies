@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// 管理者以上
+Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+    Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role')->middleware('auth');
+});
