@@ -44,6 +44,8 @@ class RoleController
         $user_id = $request->input('user_id');
         $roles = $request->input('role');
         $user = User::find($user_id);
-        $user->roles->save($roles);
+        $user->roles()->detach();
+        $user->roles()->attach($roles);
+        return redirect('/index');
     }
 }
