@@ -23,5 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // 管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role')->middleware('auth');
+    Route::get('/index', [App\Http\Controllers\RoleController::class, 'index'])->name('index');
+    Route::get('edit/{user_id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('edit');
+    Route::post('/update', [App\Http\Controllers\RoleController::class, 'update'])->name('update');
 });

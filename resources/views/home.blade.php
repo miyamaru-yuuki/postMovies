@@ -12,7 +12,7 @@
                         </div>
                     @endif
                         @can('admin-higher')
-                        <a href="{{ url('/role') }}"> 役割管理画面 </a>
+                        <a href="{{ url('/index') }}"> 役割管理画面 </a>
                         @endcan
                 </div>
             </div>

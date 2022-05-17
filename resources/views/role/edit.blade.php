@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
-    <title>役割管理画面</title>
+    <title>役割編集画面</title>
     <style>
     </style>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -14,22 +14,25 @@
 </head>
 <body>
 <header>
-    <h1>役割管理画面</h1>
+    <h1>役割編集画面</h1>
 </header>
 <nav>
 </nav>
 <main>
-    <table>
-        @foreach($users as $user)
-            <tr><td>{{$user->name}}</td><td>{{$user->email}}</td><td>{{$user->roles}}</td></tr>
-        @endforeach
-    </table>
-{{--    <form id="fm1" method="POST">--}}
-{{--        <input type="hidden" name="sid" value=0 id="sidtxt0">--}}
-{{--        <input type="text" name="sname" id="snametxt0">--}}
-{{--        <input type="text" name="tanka" id="tankatxt0">--}}
-{{--        <input type="submit" value="追加" id="submit">--}}
-{{--    </form>--}}
+    <form action="{{ route('update') }}" method="POST">
+        @csrf
+        <select name="role[]" multiple>
+            @foreach ($roles as $role)
+                @if($role->selected)
+                    <option value="{{ $role->id }}" selected>{{ $role->role }}</option>
+                @else
+                    <option value="{{ $role->id }}">{{ $role->role }}</option>
+                @endif
+            @endforeach
+        </select>
+        <input type="hidden" name="user_id" value="{{$user_id}}">
+        <input type="submit" value="更新">
+    </form>
 </main>
 <footer>
 </footer>
