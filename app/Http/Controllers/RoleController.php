@@ -10,18 +10,6 @@ class RoleController
     public function index()
     {
         $users = User::with('roles')->get();
-        $karirole = '';
-        foreach($users as $user){
-            foreach($user->roles as $role){
-                if($karirole == ''){
-                    $karirole = $role->role;
-                }else{
-                    $karirole = $karirole. ',' .$role->role;
-                }
-            }
-            $user->roles = $karirole;
-            $karirole = '';
-        }
         return view('role.index', ['users' => $users]);
     }
 
@@ -29,14 +17,14 @@ class RoleController
     {
         $user = User::find($user_id);
         $roles = Role::all();
-        foreach($roles as $data){
-            foreach($user->roles as $myRole){
-                if($data->id == $myRole->id){
-                    $data['selected'] = true;
-                }
-            }
-        }
-        return view('role.edit', ['user_id' => $user_id,'roles' => $roles]);
+//        foreach($roles as $data){
+//            foreach($user->roles as $myRole){
+//                if($data->id == $myRole->id){
+//                    $data['selected'] = true;
+//                }
+//            }
+//        }
+        return view('role.edit', ['user_id' => $user_id,'roles' => $roles,'user' => $user]);
     }
 
     public function update(Request $request)

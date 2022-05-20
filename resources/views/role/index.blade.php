@@ -22,7 +22,7 @@
     <table>
         <tr><th>ユーザー名</th><th>メールアドレス</th><th>役割</th><th>編集</th></tr>
         @foreach($users as $user)
-            <tr><td>{{$user->name}}</td><td>{{$user->email}}</td><td>{{$user->roles}}</td><td><a href="{{url('edit/' .$user->id)}}">編集</a></td></tr>
+            <tr><td>{{$user->name}}</td><td>{{$user->email}}</td><td>{{$user->roles->reduce(fn($carry, $item) => $carry ? $carry.','.$item->role : $item->role)}}</td><td><a href="{{url('edit/' .$user->id)}}">編集</a></td></tr>
         @endforeach
     </table>
 </main>
