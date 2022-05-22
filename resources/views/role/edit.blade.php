@@ -23,7 +23,7 @@
         @csrf
         <select name="role[]" multiple>
             @foreach ($roles as $role)
-                @if($user->roles->contains(fn($value,$key) => $role->id == $key))
+                @if($user->roles->contains(fn($value,$key) => $role->id == $value->id))
                     <option value="{{$role->id}}" selected>{{$role->role}}</option>
                 @else
                     <option value="{{$role->id}}">{{$role->role}}</option>
