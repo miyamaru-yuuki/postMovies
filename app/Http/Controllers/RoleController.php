@@ -17,13 +17,6 @@ class RoleController
     {
         $user = User::find($user_id);
         $roles = Role::all();
-//        foreach($roles as $data){
-//            foreach($user->roles as $myRole){
-//                if($data->id == $myRole->id){
-//                    $data['selected'] = true;
-//                }
-//            }
-//        }
         return view('role.edit', ['user_id' => $user_id,'roles' => $roles,'user' => $user]);
     }
 

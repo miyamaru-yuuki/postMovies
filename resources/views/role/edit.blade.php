@@ -22,10 +22,12 @@
     <form action="{{ route('update') }}" method="POST">
         @csrf
         <select name="role[]" multiple>
-            @foreach ($roles as $role){{
-                $user->roles->reduce(function ($carry, $item, $role) {
-                    $role->id == $item->id ? '<option value="' .$role->role. '" selected>' .$role->role. '</option>' : '<option value="' .$role->role. '">' .$role->role. '</option>';})
-}}
+            @foreach ($roles as $role)
+                @if($user->roles->contains(fn($value,$key) => $role->id == $key))
+                    <option value="{{$role->id}}" selected>{{$role->role}}</option>
+                @else
+                    <option value="{{$role->id}}">{{$role->role}}</option>
+                @endif
             @endforeach
         </select>
         <input type="hidden" name="user_id" value="{{$user_id}}">
