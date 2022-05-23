@@ -19,7 +19,7 @@
 <nav>
 </nav>
 <main>
-    <form action="{{ route('update') }}" method="POST">
+    <form action="{{ route('user_role', ['user_id' => $user->id]) }}" method="POST">
         @csrf
         <select name="role[]" multiple>
             @foreach ($roles as $role)
@@ -30,7 +30,6 @@
                 @endif
             @endforeach
         </select>
-        <input type="hidden" name="user_id" value="{{$user_id}}">
         <input type="submit" value="更新">
     </form>
 </main>

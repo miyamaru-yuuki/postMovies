@@ -17,7 +17,7 @@ class RoleController
     {
         $user = User::find($user_id);
         $roles = Role::all();
-        return view('role.edit', ['user_id' => $user_id,'roles' => $roles,'user' => $user]);
+        return view('role.edit', ['roles' => $roles,'user' => $user]);
     }
 
     public function update(Request $request)
