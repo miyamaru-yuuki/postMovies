@@ -26,7 +26,7 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->roles->reduce(fn($carry, $item) => ($carry ? "{$carry}," : '') . $item->role)}}</td>
-                <td><a href="{{url('edit/' .$user->id)}}">編集</a></td>
+                <td><a href="{{route('user_role.edit', ['user_id' => $user->id])}}">編集</a></td>
             </tr>
         @endforeach
     </table>

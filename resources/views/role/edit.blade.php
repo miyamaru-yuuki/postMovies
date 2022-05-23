@@ -19,7 +19,7 @@
 <nav>
 </nav>
 <main>
-    <form action="{{ route('user_role', ['user_id' => $user->id]) }}" method="POST">
+    <form action="{{ route('user_role.update', ['user_id' => $user->id]) }}" method="POST">
         @csrf
         <select name="role[]" multiple>
             @foreach ($roles as $role)

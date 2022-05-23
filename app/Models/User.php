@@ -49,4 +49,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    /**
+     * ユーザーがアップロードしたのファイルを取得
+     */
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

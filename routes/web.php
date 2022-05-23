@@ -23,9 +23,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // 管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    Route::get('/index', [App\Http\Controllers\RoleController::class, 'index'])->name('index');
-    Route::get('edit/{user_id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('edit');
-    Route::post('/user_role/{user_id}', [App\Http\Controllers\RoleController::class, 'update']);
+    Route::get('/user_role', [App\Http\Controllers\RoleController::class, 'index'])->name('user_role.index');
+    Route::get('/user_role/{user_id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('user_role.edit');
+    Route::post('/user_role/{user_id}', [App\Http\Controllers\RoleController::class, 'update'])->name('user_role.update');
 });
 
 // ファイル/コメント投稿

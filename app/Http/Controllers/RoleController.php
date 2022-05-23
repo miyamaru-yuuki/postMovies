@@ -20,13 +20,12 @@ class RoleController
         return view('role.edit', ['roles' => $roles,'user' => $user]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$user_id)
     {
-        $user_id = $request->input('user_id');
         $roles = $request->input('role');
         $user = User::find($user_id);
         $user->roles()->detach();
         $user->roles()->attach($roles);
-        return redirect('/index');
+        return redirect()->route('user_role.index');
     }
 }
