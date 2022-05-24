@@ -14,7 +14,7 @@
                     @can('admin-higher')
                             <a href="{{route('user_role.index')}}"> 役割管理画面 </a>
                         @endcan
-                        <form action="/add" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('attached_file.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>ファイル：<input type="file" name="file"></div>
                             <div>コメント：<input type="text" name="comment"></div>

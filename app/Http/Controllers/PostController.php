@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PostController
 {
-    public function add(Request $request)
+    public function store(Request $request)
     {
         // ファイルを保存
         $file_name = $request->file('file')->getClientOriginalName();

@@ -29,4 +29,4 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
 });
 
 // ファイル/コメント投稿
-Route::post('add', [App\Http\Controllers\PostController::class, 'add'])->name('add');
+Route::post('/attached_file', [App\Http\Controllers\PostController::class, 'store'])->name('attached_file.store');
