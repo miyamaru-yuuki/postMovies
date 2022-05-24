@@ -14,10 +14,11 @@ class PostController
         $request->file('file')->storeAs('',$file_name);
         $comment = $request->input('comment');
         $user = User::find(1);
-        $user->files()->createMany([
-            ['file_name' => $file_name],
-            ['file_path' => 'test'],
-            ['comment' => $comment]
+        $user->files()->create([
+            'user_id' => 1,
+            'file_name' => $file_name,
+            'file_path' => 'test',
+            'comment' => $comment
         ]);
     }
 }
