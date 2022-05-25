@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController
 {
+
+    public function index($user_id)
+    {
+        $user = User::find($user_id);
+        $files = $user->files;
+        return view('file.index',['files' => $files]);
+    }
+
     public function store(Request $request)
     {
         // ファイルを保存

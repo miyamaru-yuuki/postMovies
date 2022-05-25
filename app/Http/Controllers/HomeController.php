@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::id();
         $files = File::all();
         foreach ($files as $file) {
             $file->user = $file->user->name;
         }
-        return view('home',['files' => $files]);
+        return view('home',['files' => $files,'user_id' => $user_id]);
     }
 }

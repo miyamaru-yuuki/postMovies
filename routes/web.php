@@ -30,3 +30,6 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
 
 // ファイル/コメント投稿
 Route::post('/attached_file', [App\Http\Controllers\PostController::class, 'store'])->name('attached_file.store');
+
+// ファイル編集
+Route::get('/file/{user_id}', [App\Http\Controllers\PostController::class, 'index'])->name('file.index');
