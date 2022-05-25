@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('files', function (Blueprint $table) {
             $table->string('file_name')->default('default')->change();
-            $table->string('file_path')->default('default')->change();
+            $table->dropColumn('file_path');
             $table->string('comment')->default('default')->change();
         });
     }

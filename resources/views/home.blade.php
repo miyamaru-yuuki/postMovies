@@ -20,6 +20,17 @@
                             <div>コメント：<input type="text" name="comment"></div>
                             <input type="submit" value="投稿">
                         </form>
+                        <table>
+                            <tr><th>ファイル名</th><th>プレビュー</th><th>コメント</th><th>ユーザー名</th></tr>
+                            @foreach($files as $file)
+                                <tr>
+                                    <td>{{$file->file_name}}</td>
+                                    <td><img src="/Users/miyamaruyuuki/postMovies/storage/app/{{$file->file_name}}"></td>
+                                    <td>{{$file->comment}}</td>
+                                    <td>{{$file->user}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
                 </div>
             </div>
         </div>

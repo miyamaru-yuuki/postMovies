@@ -6,14 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class File extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id'
-    ];
+    protected $guarded = array('id');
     /**
      * ファイルを所有しているユーザーを取得
      */
