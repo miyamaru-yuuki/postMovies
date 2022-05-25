@@ -12,7 +12,7 @@ class PostController
     {
         // ファイルを保存
         $file_name = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('',$file_name);
+        $request->file('file')->storeAs('public',$file_name);
         $comment = $request->input('comment');
         $user_id = Auth::id();
         $user = User::find($user_id);

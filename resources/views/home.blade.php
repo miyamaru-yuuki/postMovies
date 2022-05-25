@@ -25,7 +25,7 @@
                             @foreach($files as $file)
                                 <tr>
                                     <td>{{$file->file_name}}</td>
-                                    <td><img src="/Users/miyamaruyuuki/postMovies/storage/app/{{$file->file_name}}"></td>
+                                    <td><img src="/storage/{{$file->file_name}}"></td>
                                     <td>{{$file->comment}}</td>
                                     <td>{{$file->user}}</td>
                                 </tr>
