@@ -13,7 +13,7 @@
                     @endif
                     @can('admin-higher')
                             <a href="{{route('user_role.index')}}"> 役割管理画面 </a>
-                            <a href="{{ route('file.index', ['user_id' => $user_id]) }}"> ファイル編集画面 </a>
+                            <a href="{{ route('file.index') }}"> ファイル編集画面 </a>
                         @endcan
                         <form action="{{ route('attached_file.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}

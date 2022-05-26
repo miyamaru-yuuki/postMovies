@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
-    <title>ファイル管理画面</title>
+    <title>ファイル編集画面</title>
     <style>
     </style>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -14,22 +14,18 @@
 </head>
 <body>
 <header>
-    <h1>ファイル管理画面</h1>
+    <h1>ファイル編集画面</h1>
 </header>
 <nav>
 </nav>
 <main>
-    <table>
-        <tr><th>ファイル名</th><th>プレビュー</th><th>コメント</th><th>編集</th></tr>
-        @foreach($files as $file)
-            <tr>
-                <td>{{$file->file_name}}</td>
-                <td><img src="/storage/{{$file->file_name}}"></td>
-                <td>{{$file->comment}}</td>
-                <td><a href="{{route('file.edit', ['file_id' => $file->id])}}">編集</a></td>
-            </tr>
-        @endforeach
-    </table>
+    <form action="{{ route('file.update', ['file_id' => $file->id]) }}" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <div>コメント：<input type="text" name="comment" value="{{$file->comment}}"></div>
+        <div>ファイル：<input type="file" name="file"></div>
+        <div><img src="/storage/{{$file->file_name}}"></div>
+        <input type="submit" value="更新">
+    </form>
 </main>
 <footer>
 </footer>
