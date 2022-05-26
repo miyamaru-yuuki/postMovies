@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +12,7 @@ class PostController
 
     public function index()
     {
-        $user_id = Auth::id();
-        $user = User::find($user_id);
-        $files = $user->files;
+        $files = Auth::user()->files;
         return view('file.index',['files' => $files]);
     }
 
@@ -35,10 +32,12 @@ class PostController
         return redirect()->route('home');
     }
 
-    public function edit($file_id)
+    public function edit(File $file)
     {
-        $file = File::find($file_id);
-        return view('file.edit', ['file' => $file]);
+        if(Auth::user()->can('update', $file)){
+            return view('file.edit', ['file' => $file]);
+        }
+        return redirect()->route('file.index');
     }
 
     public function update(Request $request,$file_id)
