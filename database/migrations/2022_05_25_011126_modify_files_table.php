@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('file_name')->default('default')->change();
             $table->dropColumn('file_path');
             $table->string('comment')->default('default')->change();
+            $table->bigInteger('user_id')->change();
         });
     }
 
@@ -29,8 +30,9 @@ return new class extends Migration
     {
         Schema::table('files', function (Blueprint $table) {
             $table->string('file_name')->default(NULL)->change();
-            $table->string('file_path')->default(NULL)->change();
+            $table->string('file_path')->default(NULL);
             $table->string('comment')->default(NULL)->change();
+            $table->Integer('user_id')->change();
         });
     }
 };

@@ -32,12 +32,13 @@ class PostController
         return redirect()->route('home');
     }
 
-    public function edit(File $file)
+    public function edit($file_id)
     {
+        $file = File::find($file_id);
         if(Auth::user()->can('update', $file)){
             return view('file.edit', ['file' => $file]);
         }
-        return redirect()->route('file.index');
+        return redirect()->route('home');
     }
 
     public function update(Request $request,$file_id)
