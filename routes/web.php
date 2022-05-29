@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
 Route::post('/attached_file', [App\Http\Controllers\PostController::class, 'store'])->name('attached_file.store');
 
 // ファイル編集
-Route::get('/file', [App\Http\Controllers\PostController::class, 'index'])->name('file.index');
-Route::get('/file/{file_id}', [App\Http\Controllers\PostController::class, 'edit'])->name('file.edit');
-Route::post('/file/{file_id}', [App\Http\Controllers\PostController::class, 'update'])->name('file.update');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/file', [App\Http\Controllers\PostController::class, 'index'])->name('file.index');
+    Route::get('/file/{file_id}', [App\Http\Controllers\PostController::class, 'edit'])->name('file.edit');
+    Route::post('/file/{file_id}', [App\Http\Controllers\PostController::class, 'update'])->name('file.update');
+});

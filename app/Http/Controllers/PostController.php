@@ -44,13 +44,17 @@ class PostController
     public function update(Request $request,$file_id)
     {
         // ファイルを保存
-        $file_name = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('public',$file_name);
-        $comment = $request->input('comment');
         $file = File::find($file_id);
-        $file->file_name = $file_name;
-        $file->comment = $comment;
-        $file->save();
-        return redirect()->route('file.index');
+        if(Auth::user()->can('update', $file)) {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('public', $file_name);
+            $comment = $request->input('comment');
+            $file = File::find($file_id);
+            $file->file_name = $file_name;
+            $file->comment = $comment;
+            $file->save();
+            return redirect()->route('file.index');
+        }
+        return redirect()->route('home');
     }
 }
